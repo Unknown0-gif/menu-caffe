@@ -1,0 +1,370 @@
+/* =========================================
+   1. PENGATURAN VARIABEL WARNA & TEMA
+   ========================================= */
+:root {
+  --primary-color: #3b2314;   /* Warna Cokelat Kopi */
+  --secondary-color: #d97706; /* Warna Oranye / Aksen */
+  --accent-color: #25d366;    /* Warna Hijau WhatsApp */
+  --bg-color: #fdfbf7;        /* Warna Latar Belakang Lembut */
+  --card-bg: #ffffff;         /* Warna Kotak Menu */
+  --text-dark: #1f2937;       /* Warna Teks Utama */
+  --text-muted: #6b7280;      /* Warna Teks Pudar / Deskripsi */
+  --border-radius: 12px;      /* Tingkat Kelengkungan Sudut Kotak */
+}
+
+/* =========================================
+   2. RESET CSS DASAR
+   ========================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-dark);
+  padding-bottom: 100px; /* Ruang kosong bawah agar konten tidak tertutup keranjang */
+}
+
+/* =========================================
+   3. DESAIN HEADER KAFE
+   ========================================= */
+.header {
+  background: linear-gradient(135deg, #3b2314, #5c3a21);
+  color: white;
+  padding: 25px 20px;
+  text-align: center;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.header h1 { 
+  font-size: 22px; 
+  font-weight: 700; 
+}
+
+.header p { 
+  font-size: 12px; 
+  opacity: 0.85; 
+  margin-top: 4px; 
+}
+
+/* =========================================
+   4. BAGIAN KONTROL (PENCARIAN & KATEGORI)
+   ========================================= */
+.controls-section {
+  padding: 15px;
+  position: sticky; /* Menempel di atas saat layar digulir (scroll) */
+  top: 0;
+  background: var(--bg-color);
+  z-index: 100;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+/* Input Nomor Meja */
+.table-input-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  background: white;
+  padding: 8px 12px;
+  border-radius: var(--border-radius);
+  border: 1px solid #e5e7eb;
+}
+
+.table-input-group label { 
+  font-size: 12px; 
+  font-weight: 600; 
+}
+
+.table-input-group input {
+  width: 80px;
+  padding: 5px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Kotak Pencarian Menu */
+.search-box input {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 20px;
+  font-size: 13px;
+  outline: none;
+}
+
+/* Tombol Kategori Bisa Digeser (Horizontal Scroll) */
+.categories-wrapper {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  margin-top: 10px;
+  padding-bottom: 5px;
+  scrollbar-width: none; /* Menyembunyikan garis scroll di Firefox */
+}
+
+.categories-wrapper::-webkit-scrollbar { 
+  display: none; /* Menyembunyikan garis scroll di Chrome/Safari */
+}
+
+.btn-cat {
+  padding: 6px 14px;
+  border: 1px solid #d1d5db;
+  background: white;
+  border-radius: 20px;
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-cat.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* =========================================
+   5. TATA LETAK KARTU MENU
+   ========================================= */
+.menu-grid {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-item {
+  display: flex;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  border: 1px solid #f3f4f6;
+  position: relative;
+}
+
+/* Efek pudar otomatis jika menu ditandai habis */
+.card-item.sold-out { 
+  opacity: 0.6; 
+} 
+
+.img-container {
+  width: 110px;
+  height: 110px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Label Badge Rekomendasi/Favorit di Foto */
+.badge-rec {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  background: var(--secondary-color);
+  color: white;
+  font-size: 9px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* Detail Informasi Teks Menu */
+.item-details {
+  padding: 10px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.item-details h3 { 
+  font-size: 14px; 
+  font-weight: 600; 
+}
+
+.item-details p.desc { 
+  font-size: 11px; 
+  color: var(--text-muted); 
+  margin: 4px 0; 
+}
+
+.item-bottom { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+.item-price { 
+  font-size: 13px; 
+  font-weight: 700; 
+  color: var(--primary-color); 
+}
+
+/* Tombol Tambah Menu */
+.btn-add {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.btn-disabled {
+  background: #9ca3af;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+}
+
+/* =========================================
+   6. BILAH KERANJANG MENGAMBANG (FLOATING CART)
+   ========================================= */
+.floating-cart {
+  position: fixed;
+  bottom: 0; 
+  left: 0; 
+  right: 0;
+  background: white;
+  border-top: 1px solid #e5e7eb;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 -4px 15px rgba(0,0,0,0.08);
+  z-index: 200;
+}
+
+.cart-details { 
+  display: flex; 
+  flex-direction: column; 
+}
+
+.cart-count { 
+  font-size: 11px; 
+  color: var(--text-muted); 
+}
+
+.cart-total { 
+  font-size: 15px; 
+  font-weight: 700; 
+  color: var(--primary-color); 
+}
+
+.btn-checkout {
+  background: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* =========================================
+   7. TAMPILAN POP-UP MODAL KERANJANG
+   ========================================= */
+.modal-overlay {
+  display: none; /* Awalnya disembunyikan sampai tombol keranjang diklik */
+  position: fixed;
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: flex-end; /* Memunculkan modal dari bawah layar ala aplikasi mobile */
+}
+
+.modal-content {
+  background: white;
+  width: 100%;
+  max-width: 500px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 20px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  border-bottom: 1px solid #eee; 
+  padding-bottom: 10px; 
+}
+
+.close-btn { 
+  background: none; 
+  border: none; 
+  font-size: 24px; 
+  cursor: pointer; 
+}
+
+.modal-body { 
+  overflow-y: auto; 
+  padding: 15px 0; 
+  flex: 1; 
+}
+
+.cart-item-row { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 12px; 
+}
+
+.qty-control { 
+  display: flex; 
+  gap: 8px; 
+  align-items: center; 
+}
+
+.qty-btn { 
+  width: 24px; 
+  height: 24px; 
+  border: 1px solid #ccc; 
+  background: #f3f4f6; 
+  border-radius: 4px; 
+  font-weight: bold; 
+  cursor: pointer; 
+}
+
+.total-row { 
+  display: flex; 
+  justify-content: space-between; 
+  font-size: 16px; 
+  margin-bottom: 15px; 
+}
+
+.btn-wa { 
+  width: 100%; 
+  background: var(--accent-color); 
+  color: white; 
+  border: none; 
+  padding: 12px; 
+  border-radius: 10px; 
+  font-weight: 700; 
+  font-size: 14px; 
+  cursor: pointer; 
+}
