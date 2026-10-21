@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Digital - Kopi Senja</title>
+  
+  <!-- Menghubungkan file desain CSS eksternal -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Mengimpor Google Fonts (Gaya Huruf Poppins agar terlihat modern) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Bagian Header: Menampilkan Nama dan Slogan Kafe -->
+  <header class="header">
+    <div class="header-content">
+      <h1 id="cafeName">Nama Kafe</h1>
+      <p id="cafeSlogan">Slogan Kafe</p>
+    </div>
+  </header>
+
+  <!-- Bagian Kontrol: Nomor Meja, Pencarian, dan Tombol Kategori -->
+  <section class="controls-section">
+    
+    <!-- Input Nomor Meja (Wajib diisi pelanggan sebelum memesan) -->
+    <div class="table-input-group">
+      <label for="tableNumber">📍 Nomor Meja:</label>
+      <input type="number" id="tableNumber" placeholder="Contoh: 05" min="1">
+    </div>
+
+    <!-- Kotak Pencarian Menu secara Real-Time -->
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="🔍 Cari menu favoritmu..." onkeyup="handleSearch()">
+    </div>
+
+    <!-- Tempat Kategori Menu (Tombol filter akan dimuat otomatis oleh JavaScript) -->
+    <div class="categories-wrapper" id="categoriesContainer"></div>
+  </section>
+
+  <!-- Tempat Daftar Menu Utama (Kartu menu akan dimuat otomatis oleh JavaScript) -->
+  <main class="menu-grid" id="menuContainer"></main>
+
+  <!-- Bilah Keranjang Belanja Mengambang di Bawah (Floating Cart) -->
+  <div class="floating-cart" id="floatingCart">
+    <div class="cart-details">
+      <span class="cart-count" id="cartCount">0 Item</span>
+      <span class="cart-total" id="cartTotal">Rp 0</span>
+    </div>
+    <button class="btn-checkout" onclick="openCartModal()">Lihat Pesanan 🛒</button>
+  </div>
+
+  <!-- Modal / Pop-up Rincian Keranjang Pesanan -->
+  <div class="modal-overlay" id="cartModal">
+    <div class="modal-content">
+      
+      <!-- Kepala Modal -->
+      <div class="modal-header">
+        <h2>Rincian Pesanan</h2>
+        <button class="close-btn" onclick="closeCartModal()">&times;</button>
+      </div>
+      
+      <!-- Badan Modal: Daftar item yang dipilih dimasukkan via JavaScript -->
+      <div class="modal-body" id="cartItemList"></div>
+      
+      <!-- Kaki Modal: Total harga dan tombol kirim ke WhatsApp -->
+      <div class="modal-footer">
+        <div class="total-row">
+          <span>Total Bayar:</span>
+          <strong id="modalTotal">Rp 0</strong>
+        </div>
+        <button class="btn-wa" onclick="processCheckoutWA()">Kirim Pesanan ke WhatsApp 📲</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Menghubungkan file Data dan Logika Skrip JavaScript -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
